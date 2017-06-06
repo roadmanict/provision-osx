@@ -1,0 +1,7 @@
+---
+base_brew_packages:
+ - name: python3
+ - name: zsh
+base_brew_cask_apps:
+ - name: google-chrome
+ - name: slackgit add -

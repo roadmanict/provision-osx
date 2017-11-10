@@ -1,5 +1,6 @@
 ---
 base_brew_packages:
+ - name: git
  - name: zsh
  - name: macvim
    install_options: --with-override-system-vim

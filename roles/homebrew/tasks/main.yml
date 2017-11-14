@@ -14,6 +14,9 @@
   homebrew:
     update_homebrew: yes
     upgrade_all: yes
+  tags:
+  - brew
+  - cask
 
 - name: Install base homebrew packages
   homebrew:
@@ -21,6 +24,8 @@
     install_options: "{{ item.install_options | default('') }}"
     state: present
   with_items: "{{ base_brew_packages }}"
+  tags:
+  - brew
 
 - name: Install base homebrew cask packages
   homebrew_cask:
@@ -28,6 +33,8 @@
     install_options: "{{ item.install_options | default('') }}"
     state: present
   with_items: "{{ base_brew_cask_packages }}"
+  tags:
+  - cask
 
 - name: Configure OSX
   command: "{{ item }}"

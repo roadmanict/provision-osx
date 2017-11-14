@@ -36,6 +36,19 @@
   tags:
   - cask
 
+- name: OSX Defaults
+  osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    host: "{{ item.host | default('') }}"
+    value: "{{ item.value }}"
+    state: "{{ item.state }}"
+  become: "{{ item.host | default('no') }}"
+  with_items: "{{ base_osx_defaults }}"
+  tags:
+   - defaults
+
 - name: Configure OSX
   command: "{{ item }}"
   become: yes

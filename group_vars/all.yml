@@ -5,6 +5,8 @@ base_brew_packages:
  - name: macvim
    install_options: --with-override-system-vim
  - name: dockutil
+base_brew_cask_packages:
+ - name: visual-studio-code
 base_osx_config:
   # Enable tap to click DOES NOT WORK
 #  - "defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true"
@@ -38,9 +40,9 @@ base_osx_config:
   # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
   - "defaults write com.apple.finder FXPreferredViewStyle -string \"Nlsv\""
   # Disable Dashboard
-  - "defaults write com.apple.dashboard mcx-disabled -bool true"
+#  - "defaults write com.apple.dashboard mcx-disabled -bool true"
   # Don’t show Dashboard as a Space
-  - "defaults write com.apple.dock dashboard-in-overlay -bool true"
+#  - "defaults write com.apple.dock dashboard-in-overlay -bool true"
   # Don’t automatically rearrange Spaces based on most recent use DOES NOT WORK
 #  - "defaults write com.apple.dock mru-spaces -bool false"
   # Prevent Photos from opening automatically when devices are plugged in

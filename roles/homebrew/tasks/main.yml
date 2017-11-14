@@ -1,4 +1,15 @@
 ---
+- name: Create bash_profile
+  file:
+    path: ~/.bash_profile
+    state: touch
+
+- name: Configure homebrew path
+  lineinfile:
+    path: ~/.bash_profile
+    regexp: "^export PATH"
+    line: "export PATH=\"/usr/local/bin:$PATH\""
+
 - name: Update homebrew
   homebrew:
     update_homebrew: yes

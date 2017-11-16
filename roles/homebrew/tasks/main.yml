@@ -15,6 +15,7 @@
     update_homebrew: yes
     upgrade_all: yes
   tags:
+  - update
   - brew
   - cask
 

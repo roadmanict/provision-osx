@@ -7,8 +7,8 @@
 - name: Configure homebrew path
   lineinfile:
     path: ~/.bash_profile
-    regexp: "^export PATH"
-    line: "export PATH=\"/usr/local/bin:$PATH\""
+    regexp: "^export PATH="
+    line: "export PATH=\"/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH\""
 
 - name: Update homebrew
   homebrew:
@@ -50,9 +50,4 @@
   tags:
    - defaults
 
-- name: Configure OSX
-  command: "{{ item }}"
-  become: yes
-  with_items: "{{ base_osx_config }}"
-  tags:
-   - configure
+#- name: Install Terminal Solarized theme

@@ -1,10 +1,15 @@
 ---
 base_brew_packages:
+  - name: coreutils
   - name: git
   - name: zsh
+  - name: zsh-completions
   - name: macvim
     install_options: --with-override-system-vim
   - name: dockutil
+  - name: grep
+  - name: openssh
+  - name: screen
 
 base_brew_cask_packages:
   - name: visual-studio-code
@@ -49,41 +54,105 @@ base_osx_defaults:
     type: bool
     value: true
     state: present
-
-base_osx_config:
   # Disable automatic capitalization as it’s annoying when typing code
-  - "defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false"
+  - domain: NSGlobalDomain
+    key: NSAutomaticCapitalizationEnabled
+    type: bool
+    value: false
+    state: present
   # Disable smart dashes as they’re annoying when typing code
-  - "defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false"
+  - domain: NSGlobalDomain
+    key: NSAutomaticDashSubstitutionEnabled
+    type: bool
+    value: false
+    state: present
   # Disable automatic period substitution as it’s annoying when typing code
-  - "defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false"
+  - domain: NSGlobalDomain
+    key: NSAutomaticPeriodSubstitutionEnabled
+    type: bool
+    value: false
+    state: present
   # Disable smart quotes as they’re annoying when typing code
-  - "defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false"
+  - domain: NSGlobalDomain
+    key: NSAutomaticQuoteSubstitutionEnabled
+    type: bool
+    value: false
+    state: present
   # Disable auto-correct
-  - "defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false"
+  - domain: NSGlobalDomain
+    key: NSAutomaticSpellingCorrectionEnabled
+    type: bool
+    value: false
+    state: present
   # Increase sound quality for Bluetooth headphones/headsets
-  - "defaults write com.apple.BluetoothAudioAgent \"Apple Bitpool Min (editable)\" -int 40"
+  - domain: com.apple.BluetoothAudioAgent
+    key: Apple Bitpool Min (editable)
+    type: int
+    value: 40
+    state: present
   # Disable shadow in screenshots DOES NOT WORK
-#  - "defaults write com.apple.screencapture disable-shadow -bool true"
+  - domain: com.apple.screencapture
+    key: disable-shadow
+    type: bool
+    value: true
+    state: present
   # Enable subpixel font rendering on non-Apple LCDs
   # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
-#  - "defaults write NSGlobalDomain AppleFontSmoothing -int 1"
+  - domain: NSGlobalDomain
+    key: AppleFontSmoothing
+    type: int
+    value: 1
+    state: present
   # Enable HiDPI display modes (requires restart)
-  - "defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true"
+  - domain: /Library/Preferences/com.apple.windowserver
+    key: DisplayResolutionEnabled
+    type: bool
+    value: true
+    state: present
   # Avoid creating .DS_Store files on network or USB volumes
-  - "defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true"
-  - "defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true"
+  - domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: true
+    state: present
+  - domain: com.apple.desktopservices
+    key: DSDontWriteUSBStores
+    type: bool
+    value: true
+    state: present
   # Use list view in all Finder windows by default
   # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
-  - "defaults write com.apple.finder FXPreferredViewStyle -string \"Nlsv\""
+  - domain: com.apple.finder
+    key: FXPreferredViewStyle
+    type: string
+    value: Nlsv
+    state: present
   # Disable Dashboard
-#  - "defaults write com.apple.dashboard mcx-disabled -bool true"
+  - domain: com.apple.dashboard
+    key: mcx-disabled
+    type: bool
+    value: true
+    state: present
   # Don’t show Dashboard as a Space
-#  - "defaults write com.apple.dock dashboard-in-overlay -bool true"
-  # Don’t automatically rearrange Spaces based on most recent use DOES NOT WORK
-#  - "defaults write com.apple.dock mru-spaces -bool false"
+  - domain: com.apple.dock
+    key: dashboard-in-overlay
+    type: bool
+    value: true
+    state: present
+  # Don’t automatically rearrange Spaces based on most recent use
+  - domain: com.apple.dock
+    key: mru-spaces
+    type: bool
+    value: false
+    state: present
   # Prevent Photos from opening automatically when devices are plugged in
-  - "defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true"
+  - domain: com.apple.ImageCapture
+    key: disableHotPlug
+    type: bool
+    value: true
+    state: present
+
+base_osx_config:
   # Disable smart quotes as it’s annoying for messages that contain code
   - "defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add \"automaticQuoteSubstitutionEnabled\" -bool false"
   # Disable continuous spell checking

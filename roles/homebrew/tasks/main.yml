@@ -50,4 +50,59 @@
   tags:
    - defaults
 
+- name: Register current shell
+  command: echo $SHELL
+  register: current_shell
+  tags:
+   - zsh
+
+- name: Add ZSH to available shells
+  lineinfile:
+    path: /etc/shells
+    regexp: "^/usr/local/bin/zsh"
+    line: "/usr/local/bin/zsh"
+  become: yes
+  when: current_shell.stdout_lines.0 != '/usr/local/bin/zsh'
+  tags:
+   - zsh
+
+- name: Enable ZSH
+  command: chsh -s /usr/local/bin/zsh
+  when: current_shell.stdout_lines.0 != '/usr/local/bin/zsh'
+  become: yes
+  tags:
+   - zsh
+
+- name: Install or Update Presto from github
+  git:
+    repo: https://github.com/sorin-ionescu/prezto.git
+    dest: ~/.zprezto
+    recursive: yes
+    force: yes
+  tags:
+   - zsh
+
+- name: Check if Presto is installed
+  stat: path=~/.zprestorc
+  register: presto_installed
+  tags:
+   - zsh
+
+- name: Run Presto install script
+  command: |
+    zsh -c 'setopt EXTENDED_GLOB
+    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    done'
+  when: presto_installed == False
+  tags:
+   - zsh
+
+- name: Copy .zprestorc
+  copy:
+    src: ./files/dotfiles/.zprestorc
+    dest: ~/.zprestorc
+  tags:
+   - zsh
+
 #- name: Install Terminal Solarized theme

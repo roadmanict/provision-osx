@@ -89,12 +89,6 @@
   tags:
    - zsh
 
-- name: debug
-  debug:
-    var: presto_installed
-  tags:
-   - zsh
-
 - name: Run Presto install script
   command: |
     zsh -c 'setopt EXTENDED_GLOB
@@ -105,7 +99,7 @@
   tags:
    - zsh
 
-- name: Copy .zpreztorc
+- name: Copy zprezto config files
   copy:
     src: "./files/dotfiles/{{ item }}"
     dest: "~/{{ item }}"

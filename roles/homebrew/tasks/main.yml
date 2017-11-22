@@ -83,7 +83,7 @@
    - zsh
 
 - name: Check if Presto is installed
-  stat: path=~/.zprestorc
+  stat: path=~/.zpreztorc
   register: presto_installed
   tags:
    - zsh
@@ -98,12 +98,12 @@
   tags:
    - zsh
 
-- name: Copy .zprestorc
+- name: Copy .zpreztorc
   copy:
     src: "./files/dotfiles/{{ item }}"
     dest: "~/{{ item }}"
   with_items:
-    - .zprestorc
+    - .zpreztorc
     - .zprofile
   tags:
    - zsh

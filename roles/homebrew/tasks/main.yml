@@ -100,9 +100,10 @@
 
 - name: Copy .zprestorc
   copy:
-    src: ./files/dotfiles/.zprestorc
-    dest: ~/.zprestorc
+    src: "./files/dotfiles/{{ item }}"
+    dest: "~/{{ item }}"
+  with_items:
+    - .zprestorc
+    - .zprofile
   tags:
    - zsh
-
-#- name: Install Terminal Solarized theme

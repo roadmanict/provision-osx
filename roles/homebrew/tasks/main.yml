@@ -83,14 +83,9 @@
    - zsh
 
 - name: Check if Presto is installed
-  stat: path=~/.zpreztorc
+  stat:
+    path: ~/.zpreztorc
   register: presto_installed
-  tags:
-   - zsh
-
-- name: debug
-  debug:
-    var: presto_installed
   tags:
    - zsh
 
@@ -100,7 +95,7 @@
     for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
       ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
     done'
-  when: not presto_installed
+  when: not presto_installed.stat.exists is defined
   tags:
    - zsh
 

@@ -89,12 +89,6 @@
   tags:
    - zsh
 
-- name: debug
-  debug:
-    var: presto_installed
-  tags:
-   - zsh
-
 - name: Run Presto install script
   command: |
     zsh -c 'setopt EXTENDED_GLOB

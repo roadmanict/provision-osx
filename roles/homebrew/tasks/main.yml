@@ -99,7 +99,7 @@
   tags:
    - zsh
 
-- name: Copy .zpreztorc
+- name: Copy zprezto config files
   copy:
     src: "./files/dotfiles/{{ item }}"
     dest: "~/{{ item }}"

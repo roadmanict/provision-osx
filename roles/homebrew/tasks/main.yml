@@ -108,3 +108,29 @@
     - .zprofile
   tags:
    - zsh
+
+- name: Configure nvm
+  lineinfile:
+    path: ~/.zshrc
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - regexp: "^export NVM_DIR"
+      line: export NVM_DIR="$HOME/.nvm"
+    - regexp: '^. "/usr/local/opt/nvm/nvm.sh"'
+      line: . "/usr/local/opt/nvm/nvm.sh"
+  tags:
+    - zsh
+    - nvm
+
+- name: Configure SSH keys
+  lineinfile:
+    path: ~/.zshrc
+    regexp: "^ssh-add {{ item }}"
+    line: "ssh-add {{ item }}"
+  with_items:
+    "{{ ssh_keys }}"
+  tags:
+    - zsh
+
+- import_tasks: tmux.yml

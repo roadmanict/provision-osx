@@ -1,0 +1,23 @@
+---
+- name: configure tmux.conf
+  copy:
+    src: ./files/dotfiles/.tmux.conf
+    dest: ~/.tmux.conf
+  tags:
+    - tmux
+
+- name: add tmux shortcut
+  copy:
+    src: ./files/tmux-dev
+    dest: /usr/local/bin/tmux-dev
+  tags:
+    - tmux
+
+- name: checkout tmux package manager
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: ~/.tmux/plugins/tpm
+    recursive: yes
+    force: yes
+  tags:
+    - tmux

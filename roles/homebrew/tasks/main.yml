@@ -69,7 +69,6 @@
 - name: Enable ZSH
   command: chsh -s /usr/local/bin/zsh
   when: current_shell.stdout_lines.0 != '/usr/local/bin/zsh'
-  become: yes
   tags:
    - zsh
 
@@ -129,7 +128,7 @@
     regexp: "^ssh-add {{ item }}"
     line: "ssh-add {{ item }}"
   with_items:
-    "{{ ssh_keys }}"
+    "{{ ssh_keys | default([]) }}"
   tags:
     - zsh
 

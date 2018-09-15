@@ -5,9 +5,9 @@ base_brew_packages:
   - name: zsh
   - name: zsh-completions
   - name: macvim
+    install_options: --with-override-system-vim
   - name: tmux
   - name: nvm
-    install_options: --with-override-system-vim
   - name: dockutil
   - name: grep
   - name: openssh

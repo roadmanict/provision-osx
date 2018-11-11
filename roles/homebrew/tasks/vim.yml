@@ -1,0 +1,15 @@
+---
+- name: Create autoload directory
+  file:
+    path: ~/.vim/autoload
+    state: directory
+
+- name: Download and install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: ~/.vim/autoload/plug.vim
+
+- name: Copy .vimrc
+  copy:
+    src: files/dotfiles/.vimrc
+    dest: ~/.vimrc

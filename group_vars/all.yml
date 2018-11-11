@@ -14,7 +14,7 @@ base_brew_packages:
   - name: screen
 
 base_brew_cask_packages:
-  - name: visual-studio-code
+#  - name: visual-studio-code
 
 base_osx_defaults:
   # Enable tap to click

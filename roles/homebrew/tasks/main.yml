@@ -133,3 +133,5 @@
     - zsh
 
 - import_tasks: tmux.yml
+- import_tasks: vim.yml
+  tags: vim

@@ -4,12 +4,13 @@
     path: ~/.vim/autoload
     state: directory
 
-- name: Download and install vim-plug
-  get_url:
-    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: ~/.vim/autoload/plug.vim
+- name: Install minpac
+  git:
+    repo: git@github.com:k-takata/minpac.git
+    dest: ~/.vim/pack/minpac/opt/minpac
 
-- name: Copy .vimrc
-  copy:
-    src: files/dotfiles/.vimrc
+- name: Create symlink for .vimrc
+  file:
+    src: "{{playbook_dir}}/files/dotfiles/.vimrc"
     dest: ~/.vimrc
+    state: link

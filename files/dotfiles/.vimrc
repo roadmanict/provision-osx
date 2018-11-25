@@ -8,6 +8,8 @@ call minpac#add('Quramy/tsuquyomi')
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
 
+syntax on
+
 let g:netrw_banner = 0
 let g:netrw_browse_split = 0
 let g:netrw_winsize = 25

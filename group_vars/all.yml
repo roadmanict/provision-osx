@@ -153,6 +153,17 @@ base_osx_defaults:
     type: bool
     value: true
     state: present
+  # Value times 15 is value in milliseconds
+  - domain: NSGlobalDomain
+    key: InitialKeyRepeat
+    type: int
+    value: 26
+    state: present
+  - domain: NSGlobalDomain
+    key: KeyRepeat
+    type: int
+    value: 1
+    state: present
 
 base_osx_config:
   # Disable smart quotes as it’s annoying for messages that contain code

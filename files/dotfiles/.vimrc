@@ -14,6 +14,8 @@ set nowrap
 set number
 set ruler
 set cursorline
+set autoindent
+set hlsearch
 
 autocmd FileType typescript setlocal ts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sw=2 expandtab

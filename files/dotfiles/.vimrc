@@ -23,5 +23,5 @@ autocmd FileType typescript setlocal ts=2 sw=2 expandtab
 autocmd FileType yaml setlocal ts=2 sw=2 expandtab
 
 let g:netrw_banner = 0
-let g:netrw_browse_split = 0
+let g:netrw_browse_split = 4
 let g:netrw_winsize = 25

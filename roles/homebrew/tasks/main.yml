@@ -28,15 +28,6 @@
   tags:
   - brew
 
-- name: Install base homebrew cask packages
-  homebrew_cask:
-    name: "{{ item.name }}"
-    install_options: "{{ item.install_options | default('') }}"
-    state: present
-  with_items: "{{ base_brew_cask_packages }}"
-  tags:
-  - cask
-
 - name: OSX Defaults
   osx_defaults:
     domain: "{{ item.domain }}"
